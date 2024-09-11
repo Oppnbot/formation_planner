@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<launch>
+    <!-- Robot names as arguments -->
+    <arg name="robot_names" default="mur620a,mur620b,mur620c,mur620d"/>
+
+    <!-- The leader position describes the center point of the formation. Format: [x-position, y-position, rotation] -->
+    <arg name="leader_position" default="[46.0, 46.0, 0.0]"/>
+
+    <!-- List of offsets from each robot to the center point. Format: [ [x1, y1, r1], [x2, y2, r2], ... ] -->
+    <arg name="robot_positions" default="[[-2.0, -2.0, 0.0], [-2.0, 2.0, 0.0], [2.0, 2.0, 0.0], [2.0, -2.0, 0.0]]"/>
+
+    <node name="main" pkg="formation_planner" type="main.py" output="screen">
+        <param name="robot_names" value="$(arg robot_names)"/>
+        <param name="leader_position" value="$(arg leader_position)"/>
+        <param name="robot_positions" value="$(arg robot_positions)"/>
+    </node>
+</launch>
